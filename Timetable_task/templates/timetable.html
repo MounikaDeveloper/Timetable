@@ -1,0 +1,85 @@
+{% extends 'common.html' %}
+{% load static %}
+
+{% block time %}
+    <div>
+    {% include 'navigation.html' %}
+    </div>
+    <h3 align="center" style="color: lightseagreen;margin-top: 2%">Welcome Mr/Miss:{{ message }}</h3>
+    <h4 align="center" style="margin-top: 4%">College Time Table</h4>
+    <table border="1" align="center" cellpadding="15px">
+    <tr style="background-color: darkgoldenrod;color: wheat">
+        <th>Day</th>
+        <th>8:30-9:30</th>
+        <th>9:30-10:30</th>
+        <th>10:3-11:30</th>
+        <th>11:30-12:30</th>
+        <th>12:30-2:00</th>
+        <th>2:00-3:00</th>
+        <th>3:00-4:00</th>
+        <th>4:00-5:00</th>
+    </tr>
+    <tr>
+        <td align="center">MONDAY</td>
+        <td align="center">---</td>
+        <td align="center" style="color: blue">SUB1<br></td>
+        <td align="center" style="color:pink" >SUB2<br></td>
+        <td align="center" style="color:red;">SUB3<br></td>
+        <td rowspan="6"align="center" style="color: darkorange">L<br>U<br>N<br>C<br>H</td>
+        <td align="center" style="color:maroon">SUB4<br></td>
+        <td align="center" style="color:darkseagreen">SUB5<br></td>
+        <td align="center">counselling class</td>
+    </tr>
+        <tr>
+        <td align="center">TUESDAY</td>
+
+            <td align="center" style="color:blue">SUB1<br>
+        <td align="center" style="color:pink" >SUB2<br></td>
+        <td align="center" style="color:red;">SUB3<br></td>
+            <td align="center">---</td>
+        <td align="center" style="color:maroon">SUB4<br></td>
+        <td align="center" style="color:darkseagreen">SUB5<br></td>
+        <td align="center">library</td>
+        </tr>
+    <tr>
+        <td align="center">WEDNESDAY</td>
+
+            <td align="center" style="color:blue">SUB1<br>
+        <td align="center" style="color:pink" >SUB2<br></td>
+        <td align="center" style="color:darkmagenta;">SWA<br></td>
+            <td align="center">---</td>
+        <td align="center" colspan="3">Lab</td>
+        </tr>
+     <tr>
+        <td align="center">THURSDAY</td>
+
+            <td align="center" style="color:blue">SUB1<br>
+        <td align="center" style="color:pink" >SUB2<br></td>
+        <td align="center" style="color:red;">SUB3<br></td>
+            <td align="center">---</td>
+        <td align="center" style="color:maroon">SUB4<br></td>
+        <td align="center" style="color:darkseagreen">SUB5<br></td>
+        <td align="center">library</td>
+        </tr>
+     <tr>
+        <td align="center">FRIDAY</td>
+
+            <td align="center" style="color:blue">SUB1<br>
+        <td align="center" style="color:pink" >SUB2<br></td>
+        <td align="center" style="color:red;">SUB3<br></td>
+            <td align="center">---</td>
+        <td align="center" style="color:maroon">SUB4<br></td>
+        <td align="center" style="color:darkseagreen">SUB5<br></td>
+        <td align="center">library</td>
+        </tr>
+        <tr>
+    <td align="center">SATURDAY</td>
+
+            <td align="center" style="color:blue">SUB1<br>
+            <td align="center" colspan="3" style="color:darkblue">SEMINAR</td>
+        <td align="center" style="color:maroon">SUB4<br></td>
+        <td align="center" style="color:darkseagreen">SUB5<br></td>
+        <td align="center">library</td>
+        </tr>
+    </table>
+{% endblock %}
