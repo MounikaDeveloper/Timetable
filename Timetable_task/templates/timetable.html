@@ -1,85 +1,142 @@
 {% extends 'common.html' %}
-{% load static %}
-
 {% block time %}
-    <div>
     {% include 'navigation.html' %}
-    </div>
-    <h3 align="center" style="color: lightseagreen;margin-top: 2%">Welcome Mr/Miss:{{ message }}</h3>
-    <h4 align="center" style="margin-top: 4%">College Time Table</h4>
-    <table border="1" align="center" cellpadding="15px">
-    <tr style="background-color: darkgoldenrod;color: wheat">
+{#     <h3 align="center" style="color: lightseagreen;margin-top: 2%">Welcome Mr/Miss:{{ message }}</h3>#}
+    <div class="container">
+    <div id="GFG_DOWN" style="color:black;font-size: 20px; font-weight: bold;">
+    	</div>
+    <table id="myTable" class=" table order-list">
+
+    <thead>
+     <tr style="background-color: darkgoldenrod;color: wheat" id="myrow">
+         <th></th>
         <th>Day</th>
         <th>8:30-9:30</th>
         <th>9:30-10:30</th>
-        <th>10:3-11:30</th>
+        <th>10:30-11:30</th>
         <th>11:30-12:30</th>
         <th>12:30-2:00</th>
         <th>2:00-3:00</th>
         <th>3:00-4:00</th>
         <th>4:00-5:00</th>
     </tr>
-    <tr>
-        <td align="center">MONDAY</td>
-        <td align="center">---</td>
-        <td align="center" style="color: blue">SUB1<br></td>
-        <td align="center" style="color:pink" >SUB2<br></td>
-        <td align="center" style="color:red;">SUB3<br></td>
-        <td rowspan="6"align="center" style="color: darkorange">L<br>U<br>N<br>C<br>H</td>
-        <td align="center" style="color:maroon">SUB4<br></td>
-        <td align="center" style="color:darkseagreen">SUB5<br></td>
-        <td align="center">counselling class</td>
-    </tr>
+    </thead>
+    <tbody>
         <tr>
-        <td align="center">TUESDAY</td>
-
-            <td align="center" style="color:blue">SUB1<br>
-        <td align="center" style="color:pink" >SUB2<br></td>
-        <td align="center" style="color:red;">SUB3<br></td>
-            <td align="center">---</td>
-        <td align="center" style="color:maroon">SUB4<br></td>
-        <td align="center" style="color:darkseagreen">SUB5<br></td>
-        <td align="center">library</td>
+            <td class="col-sm-1">
+                <input type="button" class="ibtnDel btn btn-md btn-danger "  value="DeleteRow">
+            </td>
+            <td class="col-sm-1">
+                <input type="text" name="day" class="form-control" />
+            </td>
+            <td class="col-sm-1">
+                <input type="text" name="t1"  class="form-control"/>
+            </td>
+            <td class="col-sm-1">
+                <input type="text" name="t2"  class="form-control"/>
+            </td>
+             <td class="col-sm-1">
+                <input type="text" name="t3"  class="form-control"/>
+            </td>
+             <td class="col-sm-1">
+                <input type="text" name="t4"  class="form-control"/>
+            </td>
+             <td class="col-sm-1">
+                <input type="text" name="t5"  class="form-control"/>
+            </td>
+             <td class="col-sm-1">
+                <input type="text" name="t6"  class="form-control"/>
+            </td>
+            <td class="col-sm-1">
+                <input type="text" name="t7"  class="form-control"/>
+            </td>
+            <td class="col-sm-1">
+                <input type="text" name="t8"  class="form-control"/>
+            </td>
+{#            <td class="col-sm-2"><a class="deleteRow"></a>#}
+{##}
+{#            </td>#}
         </tr>
-    <tr>
-        <td align="center">WEDNESDAY</td>
-
-            <td align="center" style="color:blue">SUB1<br>
-        <td align="center" style="color:pink" >SUB2<br></td>
-        <td align="center" style="color:darkmagenta;">SWA<br></td>
-            <td align="center">---</td>
-        <td align="center" colspan="3">Lab</td>
-        </tr>
-     <tr>
-        <td align="center">THURSDAY</td>
-
-            <td align="center" style="color:blue">SUB1<br>
-        <td align="center" style="color:pink" >SUB2<br></td>
-        <td align="center" style="color:red;">SUB3<br></td>
-            <td align="center">---</td>
-        <td align="center" style="color:maroon">SUB4<br></td>
-        <td align="center" style="color:darkseagreen">SUB5<br></td>
-        <td align="center">library</td>
-        </tr>
-     <tr>
-        <td align="center">FRIDAY</td>
-
-            <td align="center" style="color:blue">SUB1<br>
-        <td align="center" style="color:pink" >SUB2<br></td>
-        <td align="center" style="color:red;">SUB3<br></td>
-            <td align="center">---</td>
-        <td align="center" style="color:maroon">SUB4<br></td>
-        <td align="center" style="color:darkseagreen">SUB5<br></td>
-        <td align="center">library</td>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" style="text-align: left;background-color: darkmagenta">
+                <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
+            </td>
         </tr>
         <tr>
-    <td align="center">SATURDAY</td>
 
-            <td align="center" style="color:blue">SUB1<br>
-            <td align="center" colspan="3" style="color:darkblue">SEMINAR</td>
-        <td align="center" style="color:maroon">SUB4<br></td>
-        <td align="center" style="color:darkseagreen">SUB5<br></td>
-        <td align="center">library</td>
+            <td colspan="3" style="text-align: left;background-color: darkmagenta">
+
+                <input type="button" class="btn btn-lg btn-block " onclick="deleteColumn()" value="Delete column" />
+
+            </td>
+            <td colspan="3" style="text-align: left;background-color: darkmagenta">
+
+                <input type="button" class="btn btn-lg btn-block " onclick="addColumn()" value="Add column" />
+
+            </td>
         </tr>
-    </table>
+    </tfoot>
+
+</table>
+
+</div>
+
+   <script>
+    $(document).ready(function () {
+    var counter = 0;
+
+    $("#addrow").on("click", function () {
+        var newRow = $("<tr>");
+        var cols = "";
+        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="DeleteRow"></td>';
+        cols += '<td><input type="text" class="form-control" name="name' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t1' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t2' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t3' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t4' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t5' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t6' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t7' + counter + '"/></td>';
+        cols += '<td><input type="text" class="form-control" name="t8' + counter + '"/></td>';
+
+        newRow.append(cols);
+        $("table.order-list").append(newRow);
+        counter++;
+    });
+    <!--add column-->
+
+
+
+    $("table.order-list").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();
+        counter -= 1
+    }
+    );
+
+});
+    <!--Delete Column-->
+function deleteColumn() {
+			var el_down = document.getElementById("GFG_DOWN");
+
+			// Getting the table
+			var tble = document.getElementById('myTable');
+
+			// Getting the rows in table.
+			var row = tble.rows;
+
+			// Removing the column at index(1).
+			var i = 1;
+			for (var j = 0; j < row.length; j++) {
+
+				// Deleting the ith cell of each row.
+				row[j].deleteCell(i);
+			}
+			el_down.innerHTML =
+				"Column is removed from the table.";
+		}
+
+
+    </script>
 {% endblock %}

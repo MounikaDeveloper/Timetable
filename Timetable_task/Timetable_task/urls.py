@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from app import views
+from Timetable_task import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.showIndex),
@@ -24,5 +26,8 @@ urlpatterns = [
     path('login/',views.login,name="login"),
     path('validate/',views.userValidation,name="loginvalidate"),
     path('timetable/',views.timeTable,name="timetable"),
+    path('timetable1/',views.timeTable1,name="timetable1"),
     path('logout/',views.logout,name="logout")
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

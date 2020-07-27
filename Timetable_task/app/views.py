@@ -37,8 +37,7 @@ def userValidation(request):
 
 
 def timeTable(request):
-    uname=request.session['uname']
-    return render(request,"timetable.html",{"message":request.session['uname']})
+    return render(request,"timetable.html",)
 
 def logout(request):
     try:
@@ -46,3 +45,8 @@ def logout(request):
     except KeyError:
         pass
     return HttpResponse("You're logged out.")
+
+def timeTable1(request):
+    return render(request,"timetable1.html")
+
+

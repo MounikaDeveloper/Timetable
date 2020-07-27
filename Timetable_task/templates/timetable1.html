@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<title>
+		How to Remove Column from HTML
+		Table using JavaScript ?
+	</title>
+
+	<style>
+		#myCol {
+			background: green;
+		}
+
+		table {
+			color: white;
+			margin: 0 auto;
+		}
+
+		td {
+			padding: 10px;
+		}
+	</style>
+</head>
+
+<body style="text-align:center;">
+
+	<h1 style="color:green;">
+		GeeksForGeeks
+	</h1>
+
+	<table id="table">
+		<colgroup>
+			<col id="myCol" span="2">
+			<col style="background-color:green">
+		</colgroup>
+		<tr id="myrow">
+			<th>S.No</th>
+			<th>Title</th>
+			<th>Geek_id</th>
+		</tr>
+		<tr>
+			<td>Geek_1</td>
+			<td>GeekForGeeks</td>
+			<th>Geek_id_1</th>
+		</tr>
+		<tr>
+			<td>Geek_2</td>
+			<td>GeeksForGeeks</td>
+			<th>Geek_id_2</th>
+		</tr>
+	</table>
+	<br>
+	<button onclick="Geeks()">
+		Click here
+	</button>
+	<p id="GFG_DOWN" style="color:green;
+		font-size: 20px; font-weight: bold;">
+	</p>
+
+	<script>
+		function Geeks() {
+			var el_down = document.getElementById("GFG_DOWN");
+
+			// Getting the table
+			var tble = document.getElementById('table');
+
+			// Getting the rows in table.
+			var row = tble.rows;
+
+			// Removing the column at index(1).
+			var i = 1;
+			for (var j = 0; j < row.length; j++) {
+
+				// Deleting the ith cell of each row.
+				row[j].deleteCell(i);
+			}
+			el_down.innerHTML =
+				"Column is removed from the table.";
+		}
+	</script>
+</body>
+
+</html>
