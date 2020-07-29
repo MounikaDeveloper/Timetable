@@ -1,3 +1,4 @@
+
 {% extends 'common.html' %}
 {% block time %}
     {% include 'navigation.html' %}
@@ -5,120 +6,130 @@
     <div class="container">
     <div id="GFG_DOWN" style="color:black;font-size: 20px; font-weight: bold;">
     	</div>
+        <form>
     <table id="myTable" class=" table order-list">
 
-    <thead>
-     <tr style="background-color: darkgoldenrod;color: wheat" id="myrow">
-         <th></th>
-        <th>Day</th>
-        <th>8:30-9:30</th>
-        <th>9:30-10:30</th>
-        <th>10:30-11:30</th>
-        <th>11:30-12:30</th>
-        <th>12:30-2:00</th>
-        <th>2:00-3:00</th>
-        <th>3:00-4:00</th>
-        <th>4:00-5:00</th>
-    </tr>
-    </thead>
+{#    <thead>#}
+{#    <tr>#}
+{#            <td class="col-sm-1">#}
+{#                <input type="button" class="ibtnDel btn btn-md btn-danger "  value="DeleteRow">#}
+{#            </td>#}
+{#            <td class="col-sm-1">#}
+{#                <input type="text" name="day" class="form-control" />#}
+{#            </td>#}
+{#            <td class="col-sm-1">#}
+{#                <input type="text" name="t1"  class="form-control"/>#}
+{#            </td>#}
+{#            <td class="col-sm-1">#}
+{#                <input type="text" name="t2"  class="form-control"/>#}
+{#            </td>#}
+{#             <td class="col-sm-1">#}
+{#                <input type="text" name="t3"  class="form-control"/>#}
+{#            </td>#}
+{#             <td class="col-sm-1">#}
+{#                <input type="text" name="t4"  class="form-control"/>#}
+{#            </td>#}
+{#             <td class="col-sm-1">#}
+{#                <input type="text" name="t5"  class="form-control"/>#}
+{#            </td>#}
+{#             <td class="col-sm-1">#}
+{#                <input type="text" name="t6"  class="form-control"/>#}
+{#            </td>#}
+{#            <td class="col-sm-1">#}
+{#                <input type="text" name="t7"  class="form-control"/>#}
+{#            </td>#}
+{#            <td class="col-sm-1">#}
+{#                <input type="text" name="t8"  class="form-control"/>#}
+{#            </td>#}
+{##}
+{#        </tr>#}
+{#    </thead>#}
     <tbody>
         <tr>
-            <td class="col-sm-1">
+            <td>
                 <input type="button" class="ibtnDel btn btn-md btn-danger "  value="DeleteRow">
             </td>
-            <td class="col-sm-1">
+            <td>
                 <input type="text" name="day" class="form-control" />
             </td>
-            <td class="col-sm-1">
+            <td>
                 <input type="text" name="t1"  class="form-control"/>
             </td>
-            <td class="col-sm-1">
+            <td>
                 <input type="text" name="t2"  class="form-control"/>
             </td>
-             <td class="col-sm-1">
+             <td>
                 <input type="text" name="t3"  class="form-control"/>
             </td>
-             <td class="col-sm-1">
+             <td>
                 <input type="text" name="t4"  class="form-control"/>
             </td>
-             <td class="col-sm-1">
+             <td>
                 <input type="text" name="t5"  class="form-control"/>
             </td>
-             <td class="col-sm-1">
+             <td>
                 <input type="text" name="t6"  class="form-control"/>
             </td>
-            <td class="col-sm-1">
+            <td>
                 <input type="text" name="t7"  class="form-control"/>
             </td>
-            <td class="col-sm-1">
+            <td>
                 <input type="text" name="t8"  class="form-control"/>
             </td>
-{#            <td class="col-sm-2"><a class="deleteRow"></a>#}
-{##}
-{#            </td>#}
+
         </tr>
     </tbody>
-    <tfoot>
+        </table>
+    <table>
         <tr>
-            <td colspan="3" style="text-align: left;background-color: darkmagenta">
-                <input type="button" class="btn btn-lg btn-block " id="addrow" value="Add Row" />
+            <td colspan="1" style="text-align: left;background-color: lightseagreen">
+                <input type="button" class="btn btn-lg btn-block " id="addrow" onclick="addRow()" value="Add Row" />
             </td>
-        </tr>
-        <tr>
 
-            <td colspan="3" style="text-align: left;background-color: darkmagenta">
+            <td colspan="1" style="text-align: left;background-color: lightsalmon">
 
                 <input type="button" class="btn btn-lg btn-block " onclick="deleteColumn()" value="Delete column" />
 
             </td>
-            <td colspan="3" style="text-align: left;background-color: darkmagenta">
+            <td colspan="1" style="text-align: left;background-color: lightblue">
 
-                <input type="button" class="btn btn-lg btn-block " onclick="addColumn()" value="Add column" />
+                <input type="button" class="btn btn-lg btn-block " onclick="addColumn1()" value="Add column" />
 
             </td>
         </tr>
-    </tfoot>
+    </table>
 
-</table>
 
+        </form>
 </div>
 
    <script>
-    $(document).ready(function () {
-    var counter = 0;
 
-    $("#addrow").on("click", function () {
-        var newRow = $("<tr>");
-        var cols = "";
-        cols += '<td><input type="button" class="ibtnDel btn btn-md btn-danger "  value="DeleteRow"></td>';
-        cols += '<td><input type="text" class="form-control" name="name' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t1' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t2' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t3' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t4' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t5' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t6' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t7' + counter + '"/></td>';
-        cols += '<td><input type="text" class="form-control" name="t8' + counter + '"/></td>';
+function addRow(){
+                var root=document.getElementById('myTable').getElementsByTagName('tbody')[0];
+                var rows=root.getElementsByTagName('tr');
+                var clone=cloneEl(rows[rows.length-1]);
+                root.appendChild(clone);
+            }
+function addColumn1(){
+                var root=document.getElementById('myTable').getElementsByTagName('tbody')[0];
+                 var rows=root.getElementsByTagName('tr');
+                var i=0, r, c, clone;
+                while(r=rows[i++]){
+                    c=r.getElementsByTagName('td');
+                    clone=cloneEl(c[c.length-1]);
+                    c[0].parentNode.appendChild(clone);
+                }
+            }
+function cloneEl(el){
+                var clo=el.cloneNode(true);
+                return clo;
+            }
 
-        newRow.append(cols);
-        $("table.order-list").append(newRow);
-        counter++;
-    });
-    <!--add column-->
-
-
-
-    $("table.order-list").on("click", ".ibtnDel", function (event) {
-        $(this).closest("tr").remove();
-        counter -= 1
-    }
-    );
-
-});
     <!--Delete Column-->
+
 function deleteColumn() {
-			var el_down = document.getElementById("GFG_DOWN");
+
 
 			// Getting the table
 			var tble = document.getElementById('myTable');
@@ -133,10 +144,19 @@ function deleteColumn() {
 				// Deleting the ith cell of each row.
 				row[j].deleteCell(i);
 			}
-			el_down.innerHTML =
-				"Column is removed from the table.";
 		}
+
+  $("table.order-list").on("click", ".ibtnDel", function (event) {
+        $(this).closest("tr").remove();
+        counter -= 1
+    }
+    );
+
+
 
 
     </script>
 {% endblock %}
+{% if message %}
+<h1 align="center">{{ message }}</h1>
+{% endif %}

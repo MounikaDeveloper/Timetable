@@ -27,7 +27,8 @@ urlpatterns = [
     path('validate/',views.userValidation,name="loginvalidate"),
     path('timetable/',views.timeTable,name="timetable"),
     path('timetable1/',views.timeTable1,name="timetable1"),
-    path('logout/',views.logout,name="logout")
+    path('logout/',views.logout,name="logout"),
+    path('savetable',views.saveTable,name="savetable")
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

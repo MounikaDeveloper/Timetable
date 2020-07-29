@@ -28,16 +28,20 @@ def login(request):
 def userValidation(request):
     uname = request.POST.get("uname")
     password = request.POST.get("password")
-    try:
-        Registration.objects.get(username=uname,password=password)
-        request.session['uname'] = uname
-        return render(request,"timetable.html",{"message":request.session['uname']})
-    except:
+    x=Registration.objects.filter(username=uname,password=password)
+    if x:
+            request.session['uname'] = uname
+            return render(request,"timetable.html",{"message":request.session['uname']})
+    else:
         return render(request, "login.html",{"message":"Invalid Login Details"})
 
 
 def timeTable(request):
-    return render(request,"timetable.html",)
+    try:
+        uname=request.session['uname']
+        return render(request,"timetable.html",{"session":uname})
+    except KeyError:
+        return render(request, "timetable.html", {"message": "please login"})
 
 def logout(request):
     try:
@@ -50,3 +54,10 @@ def timeTable1(request):
     return render(request,"timetable1.html")
 
 
+def saveTable(request):
+    day=request.POST.get("day")
+    t1=request.POST.get("t1")
+    t2=request.POST.get("t2")
+    t3=request.POST.get("t3")
+    print(day,t1)
+    return None
