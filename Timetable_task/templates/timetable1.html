@@ -1,14 +1,14 @@
 
 {% extends 'common.html' %}
+
 {% block time %}
-    {% include 'navigation.html' %}
-{#     <h3 align="center" style="color: lightseagreen;margin-top: 2%">Welcome Mr/Miss:{{ message }}</h3>#}
+{% include 'navigation1.html' %}
     <div class="container">
     <div id="GFG_DOWN" style="color:black;font-size: 20px; font-weight: bold;">
     	</div>
         <form action="{% url 'savetable' %}" method="post">
         {% csrf_token %}
-    <table id="myTable" class=" table order-list">
+    <table id="myTable" class="table" border="1">
 
 {#    <thead>#}
 {#    <tr>#}
@@ -48,34 +48,34 @@
     <tbody>
         <tr>
             <td>
-                <input type="button" class="ibtnDel btn btn-md btn-danger "  value="DeleteRow">
+                <input type="button" class="ibtnDel btn btn-md btn-danger "  onclick="deleteRow(this)" value="DeleteRow">
             </td>
             <td>
-                <input type="text" name="day" class="form-control" />
+                <input type="text" name="day" id="i1" class="form-control" required />
             </td>
             <td>
-                <input type="text" name="t1"  class="form-control"/>
+                <input type="text" name="t1"  id="i2" class="form-control" required/>
             </td>
             <td>
-                <input type="text" name="t2"  class="form-control"/>
+                <input type="text" name="t2" id="i3" class="form-control" required/>
             </td>
              <td>
-                <input type="text" name="t3"  class="form-control"/>
+                <input type="text" name="t3" id="i4" class="form-control" required/>
             </td>
              <td>
-                <input type="text" name="t4"  class="form-control"/>
+                <input type="text" name="t4" id="i5" class="form-control" required/>
             </td>
              <td>
-                <input type="text" name="t5"  class="form-control"/>
+                <input type="text" name="t5"  id="i6" class="form-control" required/>
             </td>
              <td>
-                <input type="text" name="t6"  class="form-control"/>
+                <input type="text" name="t6" id="i7"  class="form-control" required/>
             </td>
             <td>
-                <input type="text" name="t7"  class="form-control"/>
+                <input type="text" name="t7" id="i8" class="form-control" required/>
             </td>
             <td>
-                <input type="text" name="t8"  class="form-control"/>
+                <input type="text" name="t8" id="i9" class="form-control" required/>
             </td>
 
         </tr>
@@ -99,19 +99,23 @@
             </td>
         </tr>
     </table>
-<button type="submit" class="btn " style="background-color: darkseagreen">Save</button>
+<button type="submit"  style="background-color: darkseagreen"  onclick="display()">Save</button>
 
         </form>
 </div>
 
    <script>
-
+function deleteRow(r) {
+  var i = r.parentNode.parentNode.rowIndex;
+  document.getElementById("myTable").deleteRow(i);
+}
 function addRow(){
                 var root=document.getElementById('myTable').getElementsByTagName('tbody')[0];
                 var rows=root.getElementsByTagName('tr');
                 var clone=cloneEl(rows[rows.length-1]);
                 root.appendChild(clone);
             }
+
 function addColumn1(){
                 var root=document.getElementById('myTable').getElementsByTagName('tbody')[0];
                  var rows=root.getElementsByTagName('tr');
@@ -126,6 +130,7 @@ function cloneEl(el){
                 var clo=el.cloneNode(true);
                 return clo;
             }
+
 
     <!--Delete Column-->
 
@@ -146,14 +151,38 @@ function deleteColumn() {
 				row[j].deleteCell(i);
 			}
 		}
-<!--delete row-->
-  $("table.order-list").on("click", ".ibtnDel", function (event) {
-        $(this).closest("tr").remove();
-        counter -= 1
-    }
-    );
 
 
+<!--Ajax-->
+function display() {
+
+  var row = document.getElementById("row").value;
+ var c1 = document.getElementById("i1").value;
+var c2 = document.getElementById("i2").value;
+var c3 = document.getElementById("i3").value;
+var c4 = document.getElementById("i4").value;
+var c5 = document.getElementById("i5").value;
+var c6 = document.getElementById("i6").value;
+var c7 = document.getElementById("i7").value;
+var c8 = document.getElementById("i8").value;
+var c9 = document.getElementById("i9").value;
+var param = 'column='+c1+','+c2+','+c3+','+c4+','+c5+','+c6+','+c7+','+c8+','+c9;
+
+ var req = new XMLHttpRequest();
+ req.onreadystatechange = show;
+ req.open("POST","http://127.0.0.1:8000/timetable1/",true);
+ req.setRequestHeader('Content-Type', 'application/x-www-formurlencoded');
+ req.send(param);
+
+alert(param);
+
+ function show()
+ {
+if(req.readyState === 4 && req.status === 200)
+ {
+ var v = req.responseText;
+ alert("FHI"+v);
+ } } }
     </script>
 {% endblock %}
 {% if message %}

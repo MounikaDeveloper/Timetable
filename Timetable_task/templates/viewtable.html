@@ -1,0 +1,32 @@
+{% extends 'common.html' %}
+{% block time %}
+    {% include 'navigation1.html' %}
+    <table align="center" border="1">
+    <tr>
+        <td>Weekname</td>
+        <td>Subject1</td>
+         <td>Subject2</td>
+         <td>Subject3</td>
+         <td>Subject4</td>
+         <td>Subject5</td>
+         <td>Subject6</td>
+         <td>Subject7</td>
+         <td>Subject8</td>
+    </tr>
+        {% for x in data %}
+    <tr>
+
+            <td>{{ x.weekname }}</td>
+            <td>{{ x.t1 }}</td>
+            <td>{{ x.t2 }}</td>
+            <td>{{ x.t3 }}</td>
+            <td>{{ x.t4 }}</td>
+            <td>{{ x.t5 }}</td>
+            <td>{{ x.t6 }}</td>
+            <td>{{ x.t7 }}</td>
+            <td>{{ x.t8 }}</td>
+
+    </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

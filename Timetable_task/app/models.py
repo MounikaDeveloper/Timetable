@@ -5,6 +5,9 @@ class Registration(models.Model):
     username=models.CharField(max_length=30,unique=True)
     password=models.CharField(max_length=30)
 
+
+
+
 class TimetableModel(models.Model):
     username=models.CharField(max_length=30)
     weekname=models.CharField(max_length=30)
