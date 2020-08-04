@@ -6,7 +6,7 @@
     <div class="container">
     <div id="GFG_DOWN" style="color:black;font-size: 20px; font-weight: bold;">
     	</div>
-        <form action="{% url 'savetable' %}" method="post">
+        <form  method="post">
         {% csrf_token %}
     <table id="myTable" class="table" border="1">
 
@@ -97,14 +97,27 @@
                 <input type="button" class="btn btn-lg btn-block " onclick="addColumn1()" value="Add column" />
 
             </td>
+            <td colspan="1" style="text-align: left;background-color: lightgreen">
+
+                <input type="button" class="btn btn-lg btn-block"    value="Select Cells to Merge" onclick="mergeHighlighted()" />
+
+            </td>
+            <td colspan="1" style="text-align: left;background-color: lightblue">
+
+                <input type="button" class="btn btn-lg btn-block" id="merge"  value="Merge"  />
+
+            </td>
         </tr>
     </table>
-<button type="submit"  style="background-color: darkseagreen"  onclick="display()">Save</button>
+<button type="submit"  style="background-color: darkseagreen;margin-left: 50%;margin-top: 2%"  onclick="display()">Save</button>
 
         </form>
 </div>
+    <div id="myDynamicTable">
+</div>
 
    <script>
+
 function deleteRow(r) {
   var i = r.parentNode.parentNode.rowIndex;
   document.getElementById("myTable").deleteRow(i);
@@ -152,10 +165,103 @@ function deleteColumn() {
 			}
 		}
 
+<!--merge cell-->
+function mergeHighlighted() {
+    var StartTD = null;
+    var StartIndex = null;
+    var EndTD = null;
+    var EndIndex = null;
+    $().ready(function() {
+        $("td").unbind("mousedown").bind("mousedown", function() {
+            $("table tbody td ").css("background-color", "");
+            StartTD = $(this);
+            var y = $(this).index();
+            var x = $(this).parent().index();
+            StartIndex = {
+                x: x,
+                y: y
+            };
+        });
+        $("td").unbind("mouseup").bind("mouseup", function() {
+            EndTD = $(this);
+            var y = $(this).index();
+            var x = $(this).parent().index();
+            EndIndex = {
+                x: x,
+                y: y
+            };
+            SelectTD(StartIndex, EndIndex, "red");
+        });
+        $("#merge").click(function() {
+            MergeCell(StartIndex, EndIndex);
+            MergeCell(EndIndex, StartIndex);
+        });
+    });
+
+    function SelectTD(StartIndex, EndIndex, Color) {
+        var MinX = null;
+        var MaxX = null;
+        var MinY = null;
+        var MaxY = null;
+        if (StartIndex.x < EndIndex.x) {
+            MinX = StartIndex.x;
+            MaxX = EndIndex.x;
+
+        } else {
+            MinX = EndIndex.x;
+            MaxX = StartIndex.x;
+        }
+        if (StartIndex.y < EndIndex.y) {
+            MinY = StartIndex.y;
+            MaxY = EndIndex.y;
+        } else {
+            MinY = EndIndex.y;
+            MaxY = StartIndex.y;
+        }
+        StartIndex = {
+            x: MinX,
+            y: MinY
+        };
+        EndIndex = {
+            x: MaxX,
+            y: MaxY
+        };
+        for (var i = MinX; i <= MaxX; i++) {
+            for (var j = MinY; j <= MaxY; j++) {
+                var SelectTR = $("table tbody tr ").eq(i);
+                $(" td input", SelectTR).eq(j).css("background-color", Color);
+
+            }
+        }
+    }
+
+    function MergeCell(StartIndex, EndIndex) {
+        var Colspan = null;
+        var Rowspan = null;
+        {#alert(StartIndex, EndIndex);#}
+        Rowspan = EndIndex.x - StartIndex.x + 1;
+        Colspan = EndIndex.y - StartIndex.y + 1;
+        var IndexTR = $("table tbody tr").eq(StartIndex.x);
+        $("td input", IndexTR).eq(StartIndex.y).attr("colspan", Colspan).attr("rowspan",
+Rowspan);
+        for (var i = StartIndex.x; i <= EndIndex.x; i++) {
+            for (var j = StartIndex.y; j <= EndIndex.y; j++) {
+                if (i === StartIndex.x && j === StartIndex.y)
+                {
+
+                           continue;
+                }
+                var SelectTR = $("table tbody tr ").eq(i);
+               $(" td input", SelectTR).eq(j).hide();
+            }
+        }
+
+    }
+}
+
 
 <!--Ajax-->
 function display() {
-
   var row = document.getElementById("row").value;
  var c1 = document.getElementById("i1").value;
 var c2 = document.getElementById("i2").value;
